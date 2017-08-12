@@ -22,7 +22,62 @@ public abstract class Items {
     private String itemName, itemDetails ,itemType;
     private int itemCode;
     private Date date;
+    public List<Person> personList = new ArrayList<>(); 
+    public List<Items> itemList = new ArrayList<>();
+    
+    // constructor
+    
+    public Items(String itemname, String itemdetails, String itemtype, int itemcode)
+    {
+        this.itemName = itemname;
+        this.itemType = itemtype;
+        this.itemDetails = itemdetails;
+        this.itemCode = itemcode;
+    }
+      
+    public abstract void  PrintItems();
+    
+    @Override
+    public String toString(){
+        
+        return "Item Name:" + this.itemName + "::" + this.itemType +"::"+
+                this.itemDetails +"::"+ this.itemCode;
+        
+    }
+    
+    
+    
+    
+    public void RegisterPerson(String fName, String emailAddress, String password)
+    {
+        Person p = new Person(fName,emailAddress,password);
+        
+        p.setFullName(fName);
+        p.setEmailAddress(emailAddress);
+        p.setPassword(password);
+        
+        personList.add(p);
+        
+    }
 
+    public void PrintPersons(){
+    for(int i=0; i < personList.size(); i++)
+         {
+             System.out.println("Printing :");
+             System.out.println(personList.get(i).getFullName()
+             + " " + personList.get(i).getEmailAddress() );
+             
+         }  
+       }// end of printing 
+  
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public String getItemName() {

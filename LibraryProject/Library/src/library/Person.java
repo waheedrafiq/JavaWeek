@@ -24,6 +24,15 @@ public class Person {
         
     }
     
+  @Override 
+    public String toString() {
+        
+        return "Name =" + this.fullName + " :: Email" + this.emailAddress + 
+                " sucessfully register";
+        
+    }
+    
+    
     public String getFullName() {
         return fullName;
     }

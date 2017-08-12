@@ -9,10 +9,22 @@ package library;
  *
  * @author MobileLaptopWR
  */
-public class Magazines extends Items {
+public class Magazines  extends Items {
     private  String MagTitle;
     private int IssueNo;
 
+    public Magazines(String itemname, String itemdetails, String itemtype, int itemcode
+    ,String magtitle, int issueno){
+        super(itemname,itemdetails,itemtype,itemcode);
+        
+        this.MagTitle = magtitle;
+        this.IssueNo = issueno;
+    }
+    
+    @Override
+    public void PrintItems(){
+        
+    }
     public String getMagTitle() {
         return MagTitle;
     }

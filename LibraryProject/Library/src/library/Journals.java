@@ -15,8 +15,17 @@ public class Journals extends Items{
     private String journalTitle;
     private double DOInumber; 
 
+    public Journals(String itemname, String itemdetails, String itemtype, int itemcode,String journaltitle
+    ,double DOInumber){
+        super(itemname, itemdetails ,itemtype,itemcode);
+        this.journalTitle = journaltitle;
+        this.DOInumber = DOInumber;   
+    }
     
-   
+   @Override
+   public void PrintItems(){
+       
+   }
   
     
     public String getJournalTitle() {

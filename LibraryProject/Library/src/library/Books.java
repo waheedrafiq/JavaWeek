@@ -12,6 +12,12 @@ package library;
 public class Books extends Items {
     public  String ISBN ;
     
+   
+    public Books(String itemname, String itemdetails, String itemtype, int itemcode,String isbn)
+    {
+        super(itemname, itemdetails ,itemtype,itemcode);
+        this.ISBN = isbn;   
+    }
 
     public String getISBN() {
         return ISBN;
@@ -20,5 +26,12 @@ public class Books extends Items {
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-
+   
+    @Override 
+    public  void  PrintItems(){
+       
+        
+       // itemList.add(this)
+        
+    }
 }// end of books
