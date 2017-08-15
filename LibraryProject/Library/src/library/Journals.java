@@ -24,6 +24,13 @@ public class Journals extends Items{
     
    @Override
    public void PrintItems(){
+       System.out.println("printing Journals: ");
+       for(Items I: itemList)
+       {
+           System.out.println("J : " + I.getItemName() +
+                   " : " + I.getItemDetails() + " : " +
+                   I.getItemType() + " : " + I.getItemCode());
+       }
        
    }
   

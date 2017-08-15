@@ -5,15 +5,17 @@
  */
 package library;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author MobileLaptopWR
  */
-public class Person {
-    
-    private String emailAddress;
-    private String fullName;
-    private String password;
+public class Person implements LibraryManager {
+    public ArrayList<Person> personList = new ArrayList<>(); 
+    public String emailAddress;
+    public String fullName;
+    public String password;
 
    
     public Person(String fName, String emailAddress, String password)
@@ -24,6 +26,18 @@ public class Person {
         
     }
     
+    
+    @Override 
+     public void RegisterPerson(String fName, String emailAddress, String password){
+         
+        Person p = new Person(fName,emailAddress,password);
+        
+        p.setFullName(fName);
+        p.setEmailAddress(emailAddress);
+        p.setPassword(password);
+        
+        personList.add(p);
+     }
   @Override 
     public String toString() {
         
@@ -31,7 +45,16 @@ public class Person {
                 " sucessfully register";
         
     }
-    
+    public void PrintPersons(){
+        
+        for(int i=0; i < personList.size(); i++)
+             {
+                 System.out.println("Printing :");
+                 System.out.println(personList.get(i).getFullName()
+                 + " " + personList.get(i).getEmailAddress() );
+
+             }  
+    }// end of printing 
     
     public String getFullName() {
         return fullName;

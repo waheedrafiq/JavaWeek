@@ -10,12 +10,12 @@ package library;
  * @author waheedrafiq
  */
 
-interface LibraryManager <P>{
+interface LibraryManager{
       
     public final String baseclass ="LibraryManager";
-      public void RegisterPerson(Person i);
+      public void RegisterPerson(String fullname,String emailaddress,String passwrd);
    
     
-      public void NoticeBoard();
+      //public void NoticeBoard();
     
 }

@@ -6,6 +6,7 @@
 package library;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public  class Orders extends Items{
   
+   public ArrayList<Orders> orderList = new ArrayList<Orders>();
+    
    private double price;
    
     public Orders(String itemname, String itemdetails, String itemtype, int itemcode,double price)
@@ -37,7 +40,7 @@ public void PrintItems(){
             );
              
          }  
-       }// end of printing 
+}// end of printing 
 
 
     
@@ -70,83 +73,41 @@ public void PrintItems(){
          }
 
    }// removing vehicle by Type
-     
-     
-     
-     
-    
-     // addbooks to ItemList 
-     public void AddBooks(String itemname, String itemdetails, String itemtype, int itemcode,String isbn)
-     {
-         Books b = new Books("Book","hardcopy","SCFI",234,"dddd");
-         b.setItemName(itemname);
-         b.setItemType(itemdetails);
-         b.setItemDetails(itemtype);
-         b.setItemCode(itemcode);
-         b.setISBN(isbn);
+        
 
-         itemList.add(b);
-     }
-    
-  public void AddJournals(String itemname, String itemdetails, String itemtype, int itemcode,String journaltitle
-    ,double DOInumber, double price){
-        
-        Journals j = new Journals("Journal","IEEE","Robotic Research",3456,"Why Robotics"
-         ,0109.98);
-       
-        j.setItemName(itemname);
-        j.setItemType(itemtype);
-        j.setItemCode(itemcode);
-        j.setJournalTitle(journaltitle);
-        j.setDOInumber(DOInumber);
-        j.setDOInumber(price);
-       
-        itemList.add(j);
-               
-        System.out.println("Journal saved in List items..");
-        
-    }// add item book
-         
-    public void AddMagazines(String itemname, String itemdetails, String itemtype, int itemcode
-    ,String magtitle, int issueno){
-        
-        Magazines m = new Magazines("PC Gamer","SCFI gaming","Magazine"
-                ,8999,"World of Games",3);
-        
-        m.setItemName(itemname);
-        m.setItemDetails(itemdetails);
-        m.setItemType(itemtype);
-        m.setItemCode(itemcode);
-        m.setMagTitle(magtitle);
-        m.setIssueNo(issueno);
-        
-        itemList.add(m);
-    }
-  
-  
-  
-   
-   
-
-     public String CheckOutItem(String update)
+ 
+     public int  CheckOutItem(ArrayList<Items> items, int itemNumber)
     {
-        return update; 
-    }
-    
-    public String CheckInItem(ArrayList<Items> items, String chkItem){
         
         for(Items I: items)
         {
-            if(chkItem == (I.getItemType()))
+            if(itemNumber == (I.getItemCode()))
             {
-                System.out.println("CheckInItem list:" + chkItem);
-                     
-                //return chkItem;
+                System.out.println("Item Check out  :" + itemNumber +
+                        " : " + I.getItemName() + " " + I.getItemType()); 
+                
             }
           
         }
-       
-        return chkItem;
+        
+        return itemNumber; 
+    }
+    
+     
+    public int CheckInItem(ArrayList<Items> items, int itemNumber){
+        
+        for(Items I: items)
+        {
+            if(itemNumber == (I.getItemCode()))
+            {
+                System.out.println("You have check In items :" + itemNumber +
+                        " : " + I.getItemName() + " " + I.getItemType());    
+            }
+          
+        }
+      
+         return itemNumber;
+ 
     }
    
     

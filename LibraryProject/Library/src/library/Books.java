@@ -19,6 +19,8 @@ public class Books extends Items {
         this.ISBN = isbn;   
     }
 
+    
+    
     public String getISBN() {
         return ISBN;
     }
@@ -29,7 +31,16 @@ public class Books extends Items {
    
     @Override 
     public  void  PrintItems(){
+        
        
+       System.out.println("printing Book : ");
+       for(Items I: itemList)
+       {
+           System.out.println("B :" + I.getItemName() +
+                   " : " + I.getItemDetails() + " :" +
+                   I.getItemType() + " : " + I.getItemCode());
+       }
+ 
         
        // itemList.add(this)
         

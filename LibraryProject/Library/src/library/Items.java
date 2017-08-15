@@ -20,10 +20,10 @@ public abstract class Items {
     
     
     private String itemName, itemDetails ,itemType;
-    private int itemCode;
+    public int itemCode;
     private Date date;
-    public List<Person> personList = new ArrayList<>(); 
-    public List<Items> itemList = new ArrayList<>();
+  
+    public ArrayList<Items> itemList = new ArrayList<>();
     
     // constructor
     
@@ -34,7 +34,37 @@ public abstract class Items {
         this.itemDetails = itemdetails;
         this.itemCode = itemcode;
     }
+    
+    
+    
+     // adding books
+    public void Items(String itemname, String itemdetails, String itemtype, int itemcode,
+            String isbn){
+        
+        Books b = new Books(itemname,itemdetails,itemtype,itemcode,isbn);
+        itemList.add(b); // add the item to the list of items
+    }
       
+    
+    // add Journals
+    
+     public void Items(String itemname, String itemdetails, String itemtype, int itemcode,String journaltitle
+    ,double DOInumber){
+       
+         Journals j = new Journals(itemname,itemdetails,itemtype,itemcode,journaltitle,DOInumber);
+         itemList.add(j); // add the item to the list of items
+    }
+     
+     //Magazines 
+      public void Items(String itemname, String itemdetails, String itemtype, int itemcode
+    ,String magtitle, int issueno){
+       Magazines m = new Magazines(itemname,itemdetails,itemtype,itemcode,
+               magtitle,issueno);
+        itemList.add(m); // add the item to the list of items
+    }
+     
+     
+    
     public abstract void  PrintItems();
     
     @Override
@@ -46,40 +76,13 @@ public abstract class Items {
     }
     
     
+   
     
     
-    public void RegisterPerson(String fName, String emailAddress, String password)
-    {
-        Person p = new Person(fName,emailAddress,password);
-        
-        p.setFullName(fName);
-        p.setEmailAddress(emailAddress);
-        p.setPassword(password);
-        
-        personList.add(p);
-        
-    }
 
-    public void PrintPersons(){
-    for(int i=0; i < personList.size(); i++)
-         {
-             System.out.println("Printing :");
-             System.out.println(personList.get(i).getFullName()
-             + " " + personList.get(i).getEmailAddress() );
-             
-         }  
-       }// end of printing 
+   
   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     public String getItemName() {
         return itemName;
     }

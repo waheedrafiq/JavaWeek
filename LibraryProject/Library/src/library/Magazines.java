@@ -23,6 +23,13 @@ public class Magazines  extends Items {
     
     @Override
     public void PrintItems(){
+       System.out.println("printing Magazines: ");
+       for(Items I: itemList)
+       {
+           System.out.println("M :" + I.getItemName() +
+                   " : " + I.getItemDetails() + " : " +
+                   I.getItemType() + " : "+ I.getItemCode());
+       }
         
     }
     public String getMagTitle() {
