@@ -6,6 +6,7 @@
 package library;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class Library extends Items {
    }// end of  printing method.
    
 
-    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException, ClassNotFoundException {
 
      Items b = new Books("Book","hardcopy","SCFI",234,"dddd");
    
@@ -52,8 +53,6 @@ public class Library extends Items {
      m.Items("Magazine", "Paper", "SCFI", 2568, "PC Gamer", 34);
      m.Items("Magazine", "ebooks", "Computering", 1568, "Web .Net", 98);
   
-    Library l = new Library("LibraryBooks","IEEE","Springer",3456,11111);
-    
       
      
      b.PrintItems();    
@@ -82,7 +81,11 @@ public class Library extends Items {
    
     m.save("C:\\javafile\\mags.text");
     
-     
+    b.Load("C:\\javafile\\books.text");
+    
+    j.Load("C:\\javafile\\journal.text");
+    
+    m.Load("C:\\javafile\\mags.text");
     
     }// end of main
 

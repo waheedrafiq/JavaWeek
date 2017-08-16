@@ -4,14 +4,21 @@
  * and open the template in the editor.
  */
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import library.Books;
-import library.DataReadWriteDelete;
-import library.Inventory;
+import library.Items;
+import library.Journals;
+import library.Magazines;
+
 import library.Orders;
 import library.Person;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -29,97 +36,105 @@ public class LibraryTesting {
     // public void hello() {}
     
     
-    @Test public void testGetName()
+    @Test public void testGetSETBook()
     {
-        Inventory i = new Inventory() {};
-        
-     
-        // assert statements
-        
-        assertNull(i.getItemName());
-        assertNull(i.getItemDetails());
-        assertNull(i.getDate());
+         Items b = new Books("Book","hardcopy","SCFI",234,"dddd");
    
-    } // end of test Inventory 
-    
-    // test book class 
-    
-    @Test public void testBook(){
+        // assert statements book constructor 
+        
+        assertEquals("Book",b.getItemName());
+        assertEquals("hardcopy",b.getItemDetails());
+        assertEquals("SCFI",b.getItemType());
+        assertEquals(234,b.getItemCode());
+    }  
+   
+    @Test public void testGetSETJournals(){
        
-        Books b = new Books();
+        Items j = new Journals("Journal","IEEE","Springer",3456,"Java in Action",45.678);;
         
-        assertNull(b.getBookType());
-        assertNull(b.getBookType());
-        
-    } // end of books class test 
-    
-    
-    @Test public void testingDataReadWriteDelete(){
-        
-        // passing a String 
-        DataReadWriteDelete DRW = new DataReadWriteDelete();
-        
-        assertEquals("javaFile",DRW.ReadData("javaFile"));
-        assertEquals("textFile",DRW.WriteData("textFile"));
-        assertEquals("FooBoo", DRW.DeleteData("FooBoo"));
-        
-        
-    }// end of DataReadWriteDelete 
-    
-    @Test public void testJournals(){
-        
-        Inventory i = new Inventory(){};
-        
-        assertEquals(Arrays.asList("IEEE"),i.createJournals());
-            
-    } // end of testJournals
-    
+        assertEquals("Journal",j.getItemName());
+        assertEquals("IEEE",j.getItemDetails());
+        assertEquals("Springer",j.getItemType());
      
-    @Test public void testCreateBooks(){
-        
-        Inventory i = new Inventory(){};
-        
-        assertEquals(Arrays.asList("MyBooks in Action"),i.CreateBooks());
-            
-    } // end of testJournals
+    } // end of books class get / set journals 
     
-       
-    @Test public void testCreateMagazines(){
+    @Test public void testGetSETMagazines(){
         
-        Inventory i = new Inventory(){};
-        
-        assertEquals(Arrays.asList("PC Games"),i.CreateMagazines());
-        
-            
-    } // end of testJournals
-    
-    @Test public void testIQuantity(){
-        
-        // to be conducted .... 
+        Items m = new Magazines("Magazine", "Paper", "SCFI", 2568, "PC Gamer", 34);
+         
+        assertEquals("Magazine",m.getItemName());
+        assertEquals("Paper",m.getItemDetails());
+        assertEquals("SCFI",m.getItemType());
+        assertEquals(2568,m.getItemCode());  
     }
     
-    @Test public void  testgetEmailAddress(){
-        
-        Person pa = new Person();
-        
-        assertNull(pa.getEmailAddress());
-        
-    } // end of test email 
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
     
+    @After
+    public void cleanUpStreams() {
+        System.setOut(null);
+        System.setErr(null);
+    }
     
+    @Test
+    public void out() {
+        System.out.print("hello");
+        assertEquals("hello", outContent.toString());
+    }
+
+    @Test
+    public void err() {
+        System.err.print("hello again");
+        assertEquals("hello again", errContent.toString());
+    } 
+    
+    private Items testarraylist; 
+    @Test public void testJournalsGetData(){
+        
+        // Items j = new Journals("Journal","IEEE","Springer",3456,"Java in Action",45.678);
+        
+          testarraylist = new Journals("Journal","IEEE","Springer",3456,"Java in Action",45.678);
+          
+          String data = testarraylist.getItemName();
+          assertNotNull(data);
+          assertEquals(data,"Journal");
+            
+    } // end of testJournals
+    
+   
     @Test public void testOrders(){
-        
-        Orders o = new Orders();
-        
-        assertEquals("FooBoo", o.CheckOutItem("FooBoo"));
-        assertEquals("Book1", o.CheckInItem("Book1"));
-        //assertEquals(12, o.AddItem(12));
-       // assertEquals("wrafiq@gmail.com",o.RegisterPerson("wrafiq@gmail.com"));
-        
+      Items m = new Magazines("Magazine", "Paper", "SCFI", 2568, "PC Gamer", 34); 
+      Orders o = new Orders("GunsBook", "FirePower", "NewPaper", 340,1.98);
          
+      o.CheckInItem(m.itemList, 1568);
+      
+        assertEquals(234, o.CheckInItem(m.itemList, 234) );
+        assertEquals(1568, o.CheckInItem(m.itemList, 1568) );     
         
     }// end of orders 
     
+    // standard test 
+    
+    @Test public void testjournaltitle(){
+        
+        Items j = new Journals("Journal","IEEE","Springer",3456,"Java in Action",45.678);
+        
+        assertEquals("Journal",j.getItemName());
+    }
+    
+    @Test public void testPerson(){
+        
+        Person p = new Person("Waheed","wrafiq@gmail.com","abcd");
+        
+        assertEquals("Waheed",p.getFullName());
+        
+    }
     
     
     

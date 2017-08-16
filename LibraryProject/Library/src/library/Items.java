@@ -5,10 +5,12 @@
  */
 package library;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,6 +34,7 @@ public abstract class Items {
     private Date date;
   
     public ArrayList<Items> itemList = new ArrayList<>();
+    public ArrayList<Items> readItemList = new ArrayList<Items>();
     
     // constructor
     
@@ -101,7 +104,7 @@ public void save(String fileName) throws FileNotFoundException, UnsupportedEncod
         BufferedWriter bw = new BufferedWriter(writer);
          
         for(Items str: itemList){
-            bw.append(str.getItemName() + "/" + str.getItemType() + "\n");
+            bw.append(str.getItemName() + "|" + str.getItemType() + "|" + str.getItemDetails());
             bw.newLine();
         }// end of for
         bw.close();
@@ -117,13 +120,43 @@ public void save(String fileName) throws FileNotFoundException, UnsupportedEncod
 }// end of save method 
  
     
-    
-   
-    
-    
-
-   
   
+    public void Load(String filePath) throws FileNotFoundException, IOException, ClassNotFoundException{
+     
+        
+        //String filepath = "C:\\javafile\\testjava.text";
+        
+        BufferedReader bufReader = new BufferedReader(new FileReader(filePath));
+        
+        String line = bufReader.readLine();
+        
+        while (line != null) {
+           
+            String[] parts = line.split("|");
+            String part1 = parts[0];
+            String part2 = parts[1];
+            String part3 = parts[2];
+            
+           // int part4 = Integer.parseInt(parts[3]);
+           // String part5 = parts[4];
+            
+            Items b = new Books(part1,part2,part3,0,"");
+   
+            Items j = new Journals("Journal","IEEE","Springer",3456,"Java in Action",45.678);
+            Items m = new Magazines("Magazine", "Paper", "SCFI", 2568, "PC Gamer", 34); 
+            
+            readItemList.add(b);
+            line = bufReader.readLine(); 
+        } //end of while 
+        bufReader.close();
+         
+        for(Items per: readItemList)
+        {
+            System.out.println("Reading.." + per.getItemName() + " " + per.getItemDetails());
+            
+        }
+        
+    }
    
     public String getItemName() {
         return itemName;
@@ -164,32 +197,10 @@ public void save(String fileName) throws FileNotFoundException, UnsupportedEncod
     public void setDate(Date date) {
         this.date = date;
     }
-     
-  
-  
+
+    public ArrayList getItemName(String test) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    
-//    // testing array list 
-//    public List<String> createJournals() {
-//        List<String> ar = new ArrayList<>();
-//        ar.add("IEEE");
-//       
-//        return ar;
-//    }
-//    // testing array list 
-//    public List<String> CreateBooks() {
-//        List<String> ar = new ArrayList<>();
-//        ar.add("MyBooks in Action");
-//       
-//        return ar;
-//    }
-//    
-//     // testing array list 
-//    public List<String> CreateMagazines() {
-//        List<String> ar = new ArrayList<>();
-//        ar.add("PC Games");
-//       
-//        return ar;
-//    }
     
 }
