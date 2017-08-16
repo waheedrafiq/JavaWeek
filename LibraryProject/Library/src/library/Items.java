@@ -5,6 +5,14 @@
  */
 package library;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +51,7 @@ public abstract class Items {
         
         Books b = new Books(itemname,itemdetails,itemtype,itemcode,isbn);
         itemList.add(b); // add the item to the list of items
+        
     }
       
     
@@ -74,6 +83,39 @@ public abstract class Items {
                 this.itemDetails +"::"+ this.itemCode;
         
     }
+    
+    
+    
+   
+    
+public void save(String fileName) throws FileNotFoundException, UnsupportedEncodingException {
+      
+    try{
+        File file = new File(fileName);
+        
+           // if the file does not exits then create it !
+        if(!file.exists()){
+            file.createNewFile();
+        }
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(writer);
+         
+        for(Items str: itemList){
+            bw.append(str.getItemName() + "/" + str.getItemType() + "\n");
+            bw.newLine();
+        }// end of for
+        bw.close();
+        writer.close();
+
+
+       
+        } catch(IOException e){
+               e.printStackTrace();
+        }
+       
+    
+}// end of save method 
+ 
     
     
    
@@ -124,49 +166,30 @@ public abstract class Items {
     }
      
   
-    
-    
-    
- 
-     
   
-  
-
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // testing array list 
-    public List<String> createJournals() {
-        List<String> ar = new ArrayList<>();
-        ar.add("IEEE");
-       
-        return ar;
-    }
-    // testing array list 
-    public List<String> CreateBooks() {
-        List<String> ar = new ArrayList<>();
-        ar.add("MyBooks in Action");
-       
-        return ar;
-    }
-    
-     // testing array list 
-    public List<String> CreateMagazines() {
-        List<String> ar = new ArrayList<>();
-        ar.add("PC Games");
-       
-        return ar;
-    }
+//    // testing array list 
+//    public List<String> createJournals() {
+//        List<String> ar = new ArrayList<>();
+//        ar.add("IEEE");
+//       
+//        return ar;
+//    }
+//    // testing array list 
+//    public List<String> CreateBooks() {
+//        List<String> ar = new ArrayList<>();
+//        ar.add("MyBooks in Action");
+//       
+//        return ar;
+//    }
+//    
+//     // testing array list 
+//    public List<String> CreateMagazines() {
+//        List<String> ar = new ArrayList<>();
+//        ar.add("PC Games");
+//       
+//        return ar;
+//    }
     
 }

@@ -52,7 +52,7 @@ public class wkFiles{
     
     public void save(String fileName) throws FileNotFoundException {
       
-     Person p = new Person();
+    // Person p = new Person();
     //String tmp = "Waheed";
     PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
     for (Person per : personList)
@@ -71,14 +71,10 @@ public class wkFiles{
         
         BufferedReader bufReader = new BufferedReader(new FileReader(filepath));
         
-       
-        
         String line = bufReader.readLine();
-        
         
         while (line != null) {
            
-            
             String[] parts = line.split("/");
             String part1 = parts[0];
             String part2 = parts[1];
@@ -89,9 +85,7 @@ public class wkFiles{
             line = bufReader.readLine(); 
         } //end of while 
         bufReader.close();
-        
-       
-        
+         
         for(Person per: readPersonList)
         {
             System.out.println("Reading.." + per.getNamE());

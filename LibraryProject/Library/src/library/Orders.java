@@ -5,9 +5,21 @@
  */
 package library;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -16,6 +28,7 @@ import java.util.List;
 public  class Orders extends Items{
   
    public ArrayList<Orders> orderList = new ArrayList<Orders>();
+   public ArrayList<Items> readItemList = new ArrayList<Items>();
     
    private double price;
    
@@ -125,9 +138,61 @@ public void PrintItems(){
             }
         }
         return replaceItem;
-    }
+    }// end of class 
     
-   
+    
+//    public void save(String fileName) throws FileNotFoundException, UnsupportedEncodingException {
+//         Items b = new Books("Book","hardcopy","SCFI",234,"dddd");
+//
+//    try{
+//        PrintWriter pw = new PrintWriter(fileName, "UTF-8");
+//       
+//        for (Items per : itemList) 
+//        {
+//           pw.println(b.getItemName()+ "/" + per.getItemDetails() + "/" + per.getItemType() +
+//            "/" + per.getItemCode());
+//                   pw.close();
+//        }        
+//        
+//        System.out.println("File saved:");
+//        
+//        } catch(IOException e){
+//                System.out.println(e);
+//        }
+//    }// save files 
+    
+    
+//     @SuppressWarnings("empty-statement")
+//    public void Load() throws FileNotFoundException, IOException, ClassNotFoundException{
+//     
+//        
+//        String filepath = "C:\\javafile\\testjava.text";
+//        
+//        BufferedReader bufReader = new BufferedReader(new FileReader(filepath));
+//        
+//        String line = bufReader.readLine();
+//        
+//        while (line != null) {
+//           
+//            String[] parts = line.split("/");
+//            String part1 = parts[0];
+//            String part2 = parts[1];
+//            int part3 = Integer.parseInt(parts[2]);
+//             Items = new Items(part1,part2,part3);
+//            
+//            readItemList.add(nPerson);
+//            line = bufReader.readLine(); 
+//        } //end of while 
+//        bufReader.close();
+//         
+//        for(Items per: readItemList)
+//        {
+//            System.out.println("Reading.." + per.getItemName() + " " + per.getItemDetails());
+//            
+//        }
+//        
+//    }
+//   
     
     
     
